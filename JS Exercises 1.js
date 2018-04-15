@@ -146,20 +146,21 @@ function caesarCipher(msg) {
 }
 
 // Caesar Decipher
-function decipher(msg, code) {
-  var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
-  var answer = '';
-  for (var x = 0; x < msg.length; x++) {
-    var chr = msg[x];
-    var count = alphabet.indexOf(chr.toUpperCase());
-    var count2 = count + code;
+function decipher(msg) {
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+  let answer = '';
+  for (let x = 0; x < msg.length; x++) {
+    const chr = msg[x];
     if (chr == ' ') {
-    answer += ' ';
+        answer += ' ';
+    } else {
+            let count = alphabet.indexOf(chr.toUpperCase());
+            let count2 = count - 13;
+            if (count2 <= 0) {
+                count2 += 26;
+                }
+            answer += alphabet[count2];
+        }
     }
-    else if (count2 >= alphabet.length) {
-        count2 -= 26;
-    }
-    answer += alphabet[count2];
-  }
   return answer;
 }
